@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#080b14" />
+  <meta name="description" content="AeroWrite Ultra is a browser-based air-writing experiment using webcam hand tracking." />
+  <title>AeroWrite Ultra — Precision Air Writing</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="AeroWrite Ultra home"><span class="brand-mark">A</span><span>AEROWRITE <b>ULTRA</b><small>PRECISION AIR WRITING</small></span></a>
+      <div class="version"><span class="live-dot"></span> v1.0 BETA <span class="byline">BY ANUNAY SRIVASTAVA</span></div>
+    </header>
+    <main id="top">
+      <section class="intro"><div class="eyebrow">CAMERA-POWERED CANVAS</div><h1>Write in the <span>air.</span></h1><p>Turn hand gestures into digital strokes. No stylus, no touch — just your camera and your hand.</p></section>
+      <section class="workspace">
+        <div class="stage-card">
+          <div class="stage-heading"><div><span class="eyebrow">LIVE CANVAS</span><h2>Your workspace</h2></div><div class="status" id="status"><span class="status-dot"></span><span id="statusText">Camera disconnected</span></div></div>
+          <div class="stage" id="stage"><video id="inputVideo" playsinline muted></video><canvas id="drawCanvas" aria-label="Air writing canvas"></canvas><div class="stage-placeholder" id="placeholder"><div class="camera-icon">◎</div><strong>Ready when you are</strong><span>Connect your camera to begin air writing.</span></div><div class="stage-footer"><span id="gestureLabel">GESTURE: —</span><span id="fpsLabel">ENGINE IDLE</span></div></div>
+          <div class="stage-actions"><button class="button primary" id="startButton">▶ START ENGINE</button><button class="button secondary" id="clearButton">CLEAR CANVAS</button><button class="button secondary" id="saveImageButton">EXPORT PNG</button></div>
+          <p class="notice" id="notice" role="status">Allow camera access when your browser asks. Camera access generally requires HTTPS or localhost.</p>
+        </div>
+        <aside class="control-card">
+          <div class="card-heading"><span class="eyebrow">CONTROL PANEL</span><h2>Engine control</h2></div>
+          <div class="control-group"><div class="control-label"><label for="sensitivity">Acquisition sensitivity</label><output id="sensitivityOut">55%</output></div><input id="sensitivity" type="range" min="20" max="90" value="55" /><p>Adjusts how readily the pointer responds to hand movement.</p></div>
+          <div class="control-group"><div class="control-label"><label for="stabilizer">Motion stabilizer</label><output id="stabilizerOut">65%</output></div><input id="stabilizer" type="range" min="0" max="95" value="65" /><p>Smooths pointer movement to help reduce shaky strokes.</p></div>
+          <div class="control-group"><div class="control-label"><label for="visualization">Hand visualization</label><output id="visualizationOut">ON</output></div><label class="toggle"><input id="visualization" type="checkbox" checked /><span class="toggle-track"></span><span>Show tracked landmarks</span></label></div>
+          <div class="divider"></div>
+          <div class="card-heading"><span class="eyebrow">GESTURE GUIDE</span><h2>Use your hand</h2></div>
+          <div class="gesture-row"><span class="gesture-emoji">☝️</span><div><strong>Write</strong><p>Raise your index finger to draw.</p></div><span class="gesture-key">DRAW</span></div>
+          <div class="gesture-row"><span class="gesture-emoji">✌️</span><div><strong>Erase</strong><p>Raise index and middle fingers.</p></div><span class="gesture-key">ERASE</span></div>
+          <div class="gesture-row"><span class="gesture-emoji">✋</span><div><strong>Hover</strong><p>Open your palm to move without drawing.</p></div><span class="gesture-key">MOVE</span></div>
+          <button class="button secondary full" id="saveConfigButton">SAVE CONFIG</button><p class="small-note" id="configNote">Settings are stored in this browser only.</p>
+        </aside>
+      </section>
+      <section class="how"><div class="eyebrow">HOW IT WORKS</div><div class="steps"><article><span>01</span><h3>Connect</h3><p>Start the engine and allow webcam access.</p></article><article><span>02</span><h3>Gesture</h3><p>Use one finger to write, two to erase, or an open palm to hover.</p></article><article><span>03</span><h3>Export</h3><p>Clear your canvas or export your work as a PNG image.</p></article></div></section>
+    </main>
+    <footer><span>© <span id="year"></span> AeroWrite Ultra</span><span>Designed & developed by <strong>Anunay Srivastava</strong></span><a href="https://areowrite.netlify.app/" target="_blank" rel="noreferrer">Live website ↗</a></footer>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
